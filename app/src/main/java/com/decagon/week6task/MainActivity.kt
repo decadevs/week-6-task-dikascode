@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var editTextName: EditText
     lateinit var editTextEmail: EditText
-    lateinit var numberInput: EditText
+    lateinit var editTextNumber: EditText
     lateinit var genderOption: Spinner
     lateinit var button: Button
 
@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             validateName()
             validateEmail()
+            validateNumber()
         }
 
     }
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     /*
      * Validate name field
      */
-    private fun validateName():Boolean {
+    private fun validateName(): Boolean {
         /*
          * Initialize Name EditText field
          */
@@ -46,11 +47,11 @@ class MainActivity : AppCompatActivity() {
          */
         nameInput = nameInput.replace("\\s+".toRegex(), " ")
 
-        return if(nameInput.isEmpty()){
-            Toast.makeText(this, "This field cannot be empty", Toast.LENGTH_SHORT).show()
-            editTextName.error = "This Field can't be empty"
+        return if (nameInput.isEmpty()) {
+            Toast.makeText(this, "Name field cannot be empty", Toast.LENGTH_SHORT).show()
+            editTextName.error = "Name Field can't be empty"
             false
-        }else{
+        } else {
             Toast.makeText(this, "$nameInput", Toast.LENGTH_SHORT).show()
             editTextName.error = null
             true
@@ -59,25 +60,24 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     /*
      * Validate Email input
      */
 
-    private fun validateEmail() : Boolean {
+    private fun validateEmail(): Boolean {
         /*
         * Initialize Email EditText field
         */
         editTextEmail = findViewById(R.id.et_email)
-        var emailInput = editTextEmail.text.trim()
+        val emailInput = editTextEmail.text.trim()
 
-        return if(emailInput.isEmpty()) {
+        return if (emailInput.isEmpty()) {
             Toast.makeText(this, "This field cannot be empty", Toast.LENGTH_SHORT).show()
-            editTextEmail.error = "This Field cannot be empty"
+            editTextEmail.error = "Email Field cannot be empty"
             false
 
             //Check if the email input is valid using regular expressions
-        } else if(!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
             Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show()
             editTextEmail.error = "Please enter a valid email address"
             false
@@ -87,6 +87,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun validateNumber(): Boolean {
+        //Assign view id
+        editTextNumber = findViewById(R.id.et_number)
+
+        /*
+         * Validate Nigerian phone number to match
+         * starting with +234 or 0 and completed with 10 digits
+         * using regex
+         */
+
+        val numberInput = editTextNumber.text.trim().replace("\\s+".toRegex(), "")
+        val regexPhonePattern = "^(\\+?234|0)\\d{10}\$".toRegex()
+        val validation = numberInput.matches(regexPhonePattern)
+
+        return if (numberInput.isEmpty()) {
+            editTextNumber.error = "Phone field cannot be empty"
+            false
+        } else if (!validation) {
+            editTextNumber.error = "Please input a correct Nigerian number"
+            false
+        } else {
+            true
+        }
+    }
 
 
 }
