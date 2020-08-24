@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         button = findViewById(R.id.button)
         button.setOnClickListener {
-//            validateName()
+            validateName()
             validateEmail()
         }
 
@@ -73,13 +73,13 @@ class MainActivity : AppCompatActivity() {
 
         return if(emailInput.isEmpty()) {
             Toast.makeText(this, "This field cannot be empty", Toast.LENGTH_SHORT).show()
-            editTextName.error = "This Field cannot be empty"
+            editTextEmail.error = "This Field cannot be empty"
             false
 
             //Check if the email input is valid using regular expressions
         } else if(!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
             Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show()
-            editTextName.error = "Please enter a valid email address"
+            editTextEmail.error = "Please enter a valid email address"
             false
         } else {
             editTextEmail.error = null
