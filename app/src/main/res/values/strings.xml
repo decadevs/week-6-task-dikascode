@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Week 6 Task</string>
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Female</item>
+        <item>Male</item>
+        <item>Others</item>
+    </string-array>
+</resources>
