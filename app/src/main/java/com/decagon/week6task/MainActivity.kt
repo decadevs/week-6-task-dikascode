@@ -1,5 +1,6 @@
 package com.decagon.week6task
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
@@ -24,11 +25,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         button = findViewById(R.id.button)
-        button.setOnClickListener {
-            validateName()
-            validateEmail()
+        editTextName = findViewById(R.id.et_name)
+        editTextEmail = findViewById(R.id.et_email)
+        editTextNumber = findViewById(R.id.et_number)
 
-            numberValidation()
+        //setOnClickListener to handle validation
+        button.setOnClickListener {
+            validateName(); validateEmail(); numberValidation()
+
+            val name = editTextName.text.toString()
+            val email = editTextEmail.text.toString()
+            val phone = editTextNumber.text.toString()
+
+            /*
+             * If validation is true
+             * Progress with Intent to next activity
+             */
+            if(validateName() && validateEmail() && numberValidation()){
+                val intent = Intent(this, UserProfile::class.java)
+                intent.putExtra("Name", name)
+                intent.putExtra("Email", email)
+                intent.putExtra("Phone", phone)
+                startActivity(intent)
+            }
 
         }
 
@@ -54,7 +73,6 @@ class MainActivity : AppCompatActivity() {
             editTextName.error = "Name Field can't be empty"
             false
         } else {
-            Toast.makeText(this, "$nameInput", Toast.LENGTH_SHORT).show()
             editTextName.error = null
             true
         }
@@ -89,7 +107,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun numberValidation() {
+    private fun numberValidation() : Boolean {
         //Assign view id
         editTextNumber = findViewById(R.id.et_number)
 
@@ -97,10 +115,14 @@ class MainActivity : AppCompatActivity() {
         var validationObj = ValidateInputs()
         val result = validationObj.validateNumber(editTextNumber.text.toString())
 
-        if(editTextNumber.text.isEmpty()){
+        return if(editTextNumber.text.isEmpty()){
             editTextNumber.error = "Phone field cannot be empty"
+            false
         }else if (!result){
             editTextNumber.error = "Please input a correct Nigerian number"
+            false
+        } else {
+            result
         }
 
 

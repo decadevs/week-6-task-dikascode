@@ -1,6 +1,7 @@
 package com.decagon.week6task
 
 import android.widget.EditText
+import org.hamcrest.CoreMatchers.`is`
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -20,7 +21,7 @@ class ValidateInputsTest {
         val result = obj.validateNumber(number)
 
         //Check result
-        assertEquals(result, true)
+        assertThat(result, `is`(true))
     }
 
 
@@ -38,7 +39,7 @@ class ValidateInputsTest {
         val result = obj.validateNumber(number)
 
         //Check result
-        assertEquals(result, false)
+        assertThat(result, `is`(false))
     }
 
 
@@ -55,6 +56,6 @@ class ValidateInputsTest {
         val result = obj.validateNumber(number)
 
         //Check result
-        assertEquals(result, false)
+        assertThat(result, `is`(false))
     }
 }

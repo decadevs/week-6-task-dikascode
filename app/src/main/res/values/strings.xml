@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Week 6 Task</string>
+    <string name="tv_name">Name</string>
+    <string name="tv_email">Email</string>
+    <string name="tv_number">Number</string>
+    <string name="tv_gender">Gender</string>
     <string-array name="gender">
         <item>Gender</item>
         <item>Female</item>
