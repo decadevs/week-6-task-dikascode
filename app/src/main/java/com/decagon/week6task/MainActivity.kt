@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             validateName()
             validateEmail()
-            validateNumber()
+
+            numberValidation()
+
         }
 
     }
@@ -87,30 +89,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun validateNumber(): Boolean {
+    private fun numberValidation() {
         //Assign view id
         editTextNumber = findViewById(R.id.et_number)
 
-        /*
-         * Validate Nigerian phone number to match
-         * starting with +234 or 0 and completed with 10 digits
-         * using regex
-         */
+        //Instantiate ValidateInputs class
+        var validationObj = ValidateInputs()
+        val result = validationObj.validateNumber(editTextNumber.text.toString())
 
-        val numberInput = editTextNumber.text.trim().replace("\\s+".toRegex(), "")
-        val regexPhonePattern = "^(\\+?234|0)\\d{10}\$".toRegex()
-        val validation = numberInput.matches(regexPhonePattern)
-
-        return if (numberInput.isEmpty()) {
+        if(editTextNumber.text.isEmpty()){
             editTextNumber.error = "Phone field cannot be empty"
-            false
-        } else if (!validation) {
+        }else if (!result){
             editTextNumber.error = "Please input a correct Nigerian number"
-            false
-        } else {
-            true
         }
+
+
     }
 
 
