@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/mountain"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/main">
 
     <!--        Top Image-->
 
@@ -49,7 +50,7 @@
             android:drawablePadding="10dp"
             android:drawableTint="@android:color/black"
             android:ems="10"
-            android:hint="Name"
+            android:hint="@string/et_name_hint"
             android:inputType="text"
             android:paddingLeft="10dp"
             android:maxLength="25"/>
@@ -79,7 +80,7 @@
             android:drawablePadding="10dp"
             android:drawableTint="@android:color/black"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/et_email_hint"
             android:inputType="textEmailAddress"
             android:paddingLeft="10dp" />
 
@@ -111,7 +112,7 @@
             android:drawablePadding="10dp"
             android:drawableTint="@android:color/black"
             android:ems="10"
-            android:hint="Number"
+            android:hint="@string/et_number_hint"
             android:inputType="phone"
             android:paddingLeft="10dp" />
 
@@ -142,7 +143,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:background="@color/nature"
-        android:text="SUBMIT"
+        android:text="@string/button_text"
         android:textColor="@android:color/white"
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"

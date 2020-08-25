@@ -26,7 +26,7 @@ class UserProfile : AppCompatActivity() {
         val email = intent.getStringExtra("Email")
         val phone = intent.getStringExtra("Phone")
 
-        //Assign corresponding View Id's
+        //Assign variable to corresponding View Id's
         textViewName = findViewById(R.id.tv_name)
         textViewEmail = findViewById(R.id.tv_email)
         textViewNumber = findViewById(R.id.tv_number)
