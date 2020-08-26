@@ -15,7 +15,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class UserProfileTest {
     /*
-     *Launch UserProfile activity activity once
+     *Launch UserProfile activity activity once for all test methods
      */
 
     @get:Rule

@@ -17,35 +17,39 @@ class MainActivity : AppCompatActivity() {
     lateinit var editTextName: EditText
     lateinit var editTextEmail: EditText
     lateinit var editTextNumber: EditText
-    lateinit var genderOption: Spinner
+    lateinit var spinner: Spinner
     lateinit var button: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Initialize variables
         button = findViewById(R.id.button)
         editTextName = findViewById(R.id.et_name)
         editTextEmail = findViewById(R.id.et_email)
         editTextNumber = findViewById(R.id.et_number)
+        spinner = findViewById(R.id.spinner)
 
         //setOnClickListener to handle validation
         button.setOnClickListener {
-            validateName(); validateEmail(); numberValidation()
+            validateName(); validateEmail(); validateNumber(); validateSpinner()
 
             val name = editTextName.text.toString()
             val email = editTextEmail.text.toString()
             val phone = editTextNumber.text.toString()
+            val gender = spinner.selectedItem.toString()
 
             /*
              * If validation is true
              * Progress with Intent to next activity
              */
-            if(validateName() && validateEmail() && numberValidation()){
+            if(validateName() && validateEmail() && validateNumber() && validateSpinner()){
                 val intent = Intent(this, UserProfile::class.java)
                 intent.putExtra("Name", name)
                 intent.putExtra("Email", email)
                 intent.putExtra("Phone", phone)
+                intent.putExtra("Gender", gender)
                 startActivity(intent)
             }
 
@@ -107,7 +111,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun numberValidation() : Boolean {
+    private fun validateSpinner(): Boolean {
+        val selectedId = spinner.selectedItemId.toString()
+
+        return if (selectedId == "0") {
+            Toast.makeText(this, "Please select a gender to proceed", Toast.LENGTH_SHORT).show()
+            false
+        }else{
+            true
+        }
+    }
+
+    private fun validateNumber() : Boolean {
         //Assign view id
         editTextNumber = findViewById(R.id.et_number)
 

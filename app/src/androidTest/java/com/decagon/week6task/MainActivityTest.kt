@@ -13,7 +13,7 @@ import org.junit.Test
 @RunWith(AndroidJUnit4ClassRunner::class)
 class MainActivityTest {
     /*
-     *Launch MainActivity once
+     *Launch MainActivity once for all test methods
      */
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
