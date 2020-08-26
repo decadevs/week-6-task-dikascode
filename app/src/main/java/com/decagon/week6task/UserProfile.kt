@@ -19,6 +19,8 @@ class UserProfile : AppCompatActivity() {
 
         //Display user information method
         displayUserData()
+
+
     }
 
     private fun displayUserData() {

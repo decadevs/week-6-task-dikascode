@@ -37,21 +37,24 @@
 
 
     <!--        Name-->
+
+
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="152dp"
         android:layout_marginEnd="32dp"
         android:padding="10dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="25"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reg_image"
-        app:counterEnabled="true"
-        app:errorEnabled="true"
-        app:counterMaxLength="25">
+        app:layout_constraintTop_toTopOf="@+id/reg_image">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_name"
@@ -63,10 +66,9 @@
             android:ems="10"
             android:hint="Name"
             android:inputType="textPersonName"
-            android:paddingLeft="10dp"
-            android:maxLength="25"/>
+            android:maxLength="25"
+            android:paddingLeft="10dp" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <!--    Email-->
     <com.google.android.material.textfield.TextInputLayout
@@ -136,6 +138,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:entries="@array/gender"
+        android:background="@drawable/style_spinner"
         android:paddingLeft="10dp"
         android:foregroundTint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -151,12 +154,31 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="32dp"
         android:background="@color/nature"
-        android:text="SUBMIT"
+        android:text="@string/button_text"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/spinner"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:gravity="center"
+        android:text="@string/main_title"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/reg_image"
+        app:layout_constraintVertical_bias="0.66" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

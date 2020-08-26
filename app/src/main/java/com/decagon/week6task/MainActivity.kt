@@ -51,11 +51,14 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra("Phone", phone)
                 intent.putExtra("Gender", gender)
                 startActivity(intent)
+                finish()
             }
 
         }
 
     }
+
+
 
     /*
      * Validate name field
@@ -96,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         val emailInput = editTextEmail.text.trim()
 
         return if (emailInput.isEmpty()) {
-            Toast.makeText(this, "This field cannot be empty", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Email field cannot be empty", Toast.LENGTH_SHORT).show()
             editTextEmail.error = "Email Field cannot be empty"
             false
 
@@ -114,6 +117,7 @@ class MainActivity : AppCompatActivity() {
     private fun validateSpinner(): Boolean {
         val selectedId = spinner.selectedItemId.toString()
 
+        //Spinner validate condition
         return if (selectedId == "0") {
             Toast.makeText(this, "Please select a gender to proceed", Toast.LENGTH_SHORT).show()
             false
