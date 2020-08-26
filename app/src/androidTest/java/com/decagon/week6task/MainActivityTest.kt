@@ -152,9 +152,7 @@ class MainActivityTest {
     @Test
     fun test_registerClicked_whenNumberEditTextEmpty_shouldShowError() {
         //Simulate input for name and email EditText Views
-        onView(withId(R.id.et_name)).perform(typeText(NAME_TYPED)).perform(closeSoftKeyboard())
-        onView(withId(R.id.et_email)).perform(typeText(EMAIL_TYPED)).perform(closeSoftKeyboard())
-
+        nameTypedEmailTyped()
         onView(withId(R.id.button)).perform(click())
         onView(withId(R.id.et_number)).check((matches(hasErrorText("Phone field cannot be empty"))))
     }
@@ -162,11 +160,9 @@ class MainActivityTest {
     @Test
     fun test_registerClicked_whenNumberIsInvalid_shouldShowError() {
         //Simulate input for invalid number, name and email EditText Views
-        onView(withId(R.id.et_name)).perform(typeText(NAME_TYPED)).perform(closeSoftKeyboard())
-        onView(withId(R.id.et_email)).perform(typeText(EMAIL_TYPED)).perform(closeSoftKeyboard())
+        nameTypedEmailTyped()
         onView(withId(R.id.et_number)).perform(typeText(INVALID_NUMBER_TYPED))
             .perform(closeSoftKeyboard())
-
         onView(withId(R.id.button)).perform(click())
         onView(withId(R.id.et_number)).check((matches(hasErrorText("Please input a correct Nigerian number"))))
     }
@@ -180,6 +176,7 @@ class MainActivityTest {
         onView(withId(R.id.et_number)).perform(typeText(VALID_NUMBER_TYPED))
             .perform(closeSoftKeyboard())
 
+        //Auto click register button
         onView(withId(R.id.button)).perform(click())
         onView(withId(R.id.et_email)).check(matches(hasErrorText("Please enter a valid email address")))
     }
@@ -204,8 +201,7 @@ class MainActivityTest {
     @Test
     fun validateIntentSentToPackage() {
         //Simulate inputs
-        onView(withId(R.id.et_name)).perform(typeText(NAME_TYPED)).perform(closeSoftKeyboard())
-        onView(withId(R.id.et_email)).perform(typeText(EMAIL_TYPED)).perform(closeSoftKeyboard())
+        nameTypedEmailTyped()
         onView(withId(R.id.et_number)).perform(typeText(VALID_NUMBER_TYPED))
             .perform(closeSoftKeyboard())
 
@@ -229,5 +225,10 @@ class MainActivityTest {
         onView(withId(R.id.tv_number)).check(matches(withText("Phone: $VALID_NUMBER_TYPED")))
         onView(withId(R.id.tv_gender)).check(matches(withText("Gender: Male")))
 
+    }
+
+    private fun nameTypedEmailTyped() {
+        onView(withId(R.id.et_name)).perform(typeText(NAME_TYPED)).perform(closeSoftKeyboard())
+        onView(withId(R.id.et_email)).perform(typeText(EMAIL_TYPED)).perform(closeSoftKeyboard())
     }
 }
